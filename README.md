@@ -7,53 +7,68 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# 🎯 Forum d'Orientation Ben M'sik — QR Code Check-in System
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A robust, production-ready, self-hosted web application engineered for the 3rd edition of the Ben M'sik Student Orientation Forum. Built to streamline participant management, automate PDF convocation ticketing, and provide seamless, offline-capable mobile LAN check-ins for event staff.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🚀 Key Features
 
-## Learning Laravel
+- **Automated Data Import**: Seamlessly ingest pre-registration data from Google Forms and CSV files directly into the database.
+- **Dynamic QR Code Generation**: Generates high-performance PNG QR codes leveraging `bacon/bacon-qr-code` with the GD backend for reliable rendering without external image processor dependencies.
+- **Instant PDF Convocations**: Generates professional PDF tickets via `barryvdh/laravel-dompdf`, complete with embedded secure QR passes and custom branding.
+- **Local Area Network (LAN) Mobile Scanning**: Fully operational over local wireless hotspots (`0.0.0.0`), allowing staff to scan attendee tickets using mobile devices without requiring an active internet connection.
+- **Real-Time Admin Dashboard**: Live status tracking counters (total pre-registrations, checked-in participants, and pending attendees) with instant status toggling and keyword search functionality.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠️ Tech Stack
 
-## Laravel Sponsors
+- **Backend**: Laravel 12 (PHP 8.2+)
+- **Database**: MySQL / SQLite
+- **PDF Engine**: Barryvdh Laravel DomPDF
+- **QR Engine**: Bacon QR Code (`bacon/bacon-qr-code`)
+- **Frontend**: Bootstrap 5, Blade Templates, Custom Flat Design UI
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## ⚙️ Installation & Local Setup
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/Mezz-1/Ajmove-checkin-system.git](https://github.com/Mezz-1/Ajmove-checkin-system.git)
+   cd Ajmove-checkin-system
+Install PHP and JavaScript dependencies:
 
-## Contributing
+Bash
+composer install
+npm install && npm run build
+Configure environment variables:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Bash
+cp .env.example .env
+php artisan key:generate
+Update your database credentials and set your local network IP in .env:
 
-## Code of Conduct
+Extrait de code
+APP_URL=http://YOUR_LOCAL_IP:8000
+Run database migrations:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Bash
+php artisan migrate:fresh --seed
+Start the local network server:
 
-## Security Vulnerabilities
+Bash
+php artisan serve --host=0.0.0.0 --port=8000
+📱 Event Day Workflow
+Connect the host laptop and scanning smartphones to the same local Wi-Fi router or mobile hotspot.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Bind the Laravel development server to all network interfaces (--host=0.0.0.0).
 
-## License
+Organizers access the application dashboard via mobile browser, open the built-in scanner, and scan participant QR codes to validate entry instantly in real time.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+👤 Author
+Ezzoukhry Mouhssine
+
+Head of Data & Digitalization Department — AJMOVE.
